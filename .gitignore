@@ -1,2 +1,6 @@
 Temp/
 Logs/
+Assembly-CSharp.csproj
+.vs/
+Library/Artifacts/
+Library/ShaderCache/
