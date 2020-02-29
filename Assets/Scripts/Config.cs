@@ -33,8 +33,13 @@ namespace Game
         public const float BULLET_INVERSIBLE_DELTA = 0.0125f;
 
         /// <summary>
+        /// グレイズによって弾を反転できる範囲が広がる際の減分
+        /// </summary>
+        public const float BULLET_INVERSIBLE_SUBTRACTION = 0.025f;
+
+        /// <summary>
         /// 弾を反転可能な最大範囲
         /// </summary>
-        public const float MAXIMUM_BULLET_INVERSIBLE_RANGE = 10.0f;
+        public const float MAXIMUM_BULLET_INVERSIBLE_RANGE = 5.0f;
     }
 }
