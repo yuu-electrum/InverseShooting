@@ -13,7 +13,7 @@ namespace Game
     public class MyshipControl : MonoBehaviour
     {
         [SerializeField]
-        CameraControl cameraControl;
+        CameraControl cameraControl = null;
 
         public void Start()
         {
