@@ -18,7 +18,7 @@ namespace Game
 
         public void Update()
         {
-        
+
         }
 
         /// <summary>

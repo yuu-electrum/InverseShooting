@@ -10,6 +10,7 @@ namespace Game.Bullet
     public class BasicBulletTask : MonoBehaviour
     {
         private int currentFrame = 0;
+        private BulletFactory bulletFactory = null;
 
         /// <summary>
         /// タスクが仕事するフレーム長
@@ -30,7 +31,7 @@ namespace Game.Bullet
         /// <summary>
         /// タスクを終了すべきかどうか
         /// </summary>
-        public bool IsTerminateRequired
+        public bool ShouldTerminate
         {
             get
             {
@@ -39,11 +40,23 @@ namespace Game.Bullet
         }
 
         /// <summary>
+        /// 弾のファクトリクラス
+        /// </summary>
+        public BulletFactory Factory
+        {
+            get
+            {
+                return bulletFactory;
+            }
+        }
+
+        /// <summary>
         /// 初期化
         /// </summary>
-        public virtual void Initialize()
+        /// <param name="bulletFactory">弾のファクトリクラス</param>
+        public virtual void Initialize(BulletFactory bulletFactory)
         {
-
+            this.bulletFactory = bulletFactory;
         }
 
         /// <summary>

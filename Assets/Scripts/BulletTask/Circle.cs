@@ -12,7 +12,7 @@ namespace Game.Bullet
     {
         public void Start()
         {
-        
+            Duration = 1000;
         }
 
         public void Update()
@@ -20,9 +20,9 @@ namespace Game.Bullet
 
         }
 
-        public override void Initialize()
+        public override void Initialize(BulletFactory bulletFactory)
         {
-            base.Initialize();
+            base.Initialize(bulletFactory);
         }
 
         public override void Continue()
