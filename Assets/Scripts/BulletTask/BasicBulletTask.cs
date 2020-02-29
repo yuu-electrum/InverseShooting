@@ -11,6 +11,7 @@ namespace Game.Bullet
     {
         private int currentFrame = 0;
         private BulletFactory bulletFactory = null;
+        private Game.Variables.Variables variables = null;
 
         /// <summary>
         /// タスクが仕事するフレーム長
@@ -54,9 +55,10 @@ namespace Game.Bullet
         /// 初期化
         /// </summary>
         /// <param name="bulletFactory">弾のファクトリクラス</param>
-        public virtual void Initialize(BulletFactory bulletFactory)
+        public virtual void Initialize(BulletFactory bulletFactory, Game.Variables.Variables variables)
         {
             this.bulletFactory = bulletFactory;
+            this.variables = variables;
         }
 
         /// <summary>

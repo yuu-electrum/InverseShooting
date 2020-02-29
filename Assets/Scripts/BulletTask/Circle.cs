@@ -7,22 +7,20 @@ namespace Game.Bullet
     /// <summary>
     /// 弾のフェーズを表現するタスク
     /// </summary>
-    [RequireComponent(typeof(BulletFactory))]
     public class Circle : BasicBulletTask
     {
+        private List<IBullet> bullets;
+
         public void Start()
         {
+            bullets = new List<IBullet>();
+
             Duration = 1000;
         }
 
-        public void Update()
+        public override void Initialize(BulletFactory bulletFactory, Game.Variables.Variables variables)
         {
-
-        }
-
-        public override void Initialize(BulletFactory bulletFactory)
-        {
-            base.Initialize(bulletFactory);
+            base.Initialize(bulletFactory, variables);
         }
 
         public override void Continue()

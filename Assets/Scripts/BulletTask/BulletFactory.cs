@@ -32,6 +32,11 @@ namespace Game.Bullet
             newObject.Degrees  = degrees;
             newObject.Speed    = speed;
 
+            if(isInversible)
+            {
+                (newObject as InversibleBullet).CurrentTimeflow = InversibleBullet.Timeflow.Normal;
+            }
+
             return newObject;
         }
     }

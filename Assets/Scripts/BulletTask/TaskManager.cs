@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Variables;
 
 namespace Game.Bullet
 {
@@ -11,32 +12,54 @@ namespace Game.Bullet
     public class TaskManager : MonoBehaviour
     {
         [SerializeField]
-        private BulletFactory bulletFactory;
+        private BulletFactory bulletFactory = null;
 
-        private Dictionary<int, List<BasicBulletTask>> taskSchedules = null;
+        [SerializeField]
+        private Game.Variables.Variables variables = null;
+
+        private Dictionary<int, int> taskIndexes;
+        private Dictionary<int, BasicBulletTask> allTasks;
+        private List<BasicBulletTask> tasks;
+
+        private int currentFrame = 0;
 
         public void Start()
         {
-            taskSchedules = new Dictionary<int, List<BasicBulletTask>>();
+            taskIndexes = new Dictionary<int, int>();
+            allTasks = new Dictionary<int, BasicBulletTask>();
+            tasks = new List<BasicBulletTask>();
         }
 
         public void Update()
         {
-            var completedSchedules = taskSchedules.Where(ts => ts.Value.Count == 0);
-            foreach(var cs in completedSchedules)
+            var activatedTaskIndexes = taskIndexes.Where(i => i.Value == currentFrame);
+            foreach(var taskIndex in activatedTaskIndexes)
             {
-                // そのフレームに開始したタスクがすべて完了していたら削除する
-                taskSchedules.Remove(cs.Key);
+                allTasks[taskIndex.Key].enabled = true;
+                tasks.Add(allTasks[taskIndex.Key]);
             }
+            tasks.ForEach(t => t.Continue());
 
-            foreach(var ts in taskSchedules)
-            {
-                // 完了したタスクはリストから削除する
-                ts.Value.RemoveAll(t => t.ShouldTerminate);
+            tasks.Where(t => t.ShouldTerminate).ToList().ForEach(t => Destroy(t));
+            tasks.RemoveAll(t => t.ShouldTerminate);
 
-                // 残っているタスクを実行する
-                ts.Value.ForEach(t => t.Continue());
-            }
+            currentFrame++;
+        }
+
+        /// <summary>
+        /// タスクを追加する
+        /// </summary>
+        /// <param name="startFrame">タスク開始フレーム</param>
+        /// <param name="task">タスク</param>
+        public void AddTask(int startFrame, BasicBulletTask task)
+        {
+            // タスクを初期化しておく
+            task.Initialize(bulletFactory, variables);
+            task.enabled = false;
+
+            var id = allTasks.Count;
+            taskIndexes.Add(id, startFrame);
+            allTasks.Add(id, task);
         }
     }
 }
