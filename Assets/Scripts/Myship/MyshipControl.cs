@@ -69,5 +69,11 @@ namespace Game
 
             this.gameObject.transform.position = position;
         }
+
+        public void OnCollisionEnter(Collision collision)
+        {
+            var obj = collision.collider.gameObject.GetComponent(typeof(Bullet.IBullet)) as Bullet.IBullet;
+            if(obj == null) { return; }
+        }
     }
 }

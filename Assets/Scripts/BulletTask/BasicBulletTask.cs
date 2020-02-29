@@ -32,11 +32,11 @@ namespace Game.Bullet
         /// <summary>
         /// タスクを終了すべきかどうか
         /// </summary>
-        public bool ShouldTerminate
+        public virtual bool ShouldTerminate
         {
             get
             {
-                return CurrentFrame == Duration;
+                return CurrentFrame > Duration;
             }
         }
 
@@ -48,6 +48,17 @@ namespace Game.Bullet
             get
             {
                 return bulletFactory;
+            }
+        }
+
+        /// <summary>
+        /// ゲーム変数
+        /// </summary>
+        public Game.Variables.Variables Variables
+        {
+            get
+            {
+                return variables;
             }
         }
 
@@ -67,6 +78,14 @@ namespace Game.Bullet
         public virtual void Continue()
         {
             currentFrame++;
+        }
+
+        /// <summary>
+        /// タスクを終了する
+        /// </summary>
+        public virtual void Terminate()
+        {
+            
         }
 
         /// <summary>

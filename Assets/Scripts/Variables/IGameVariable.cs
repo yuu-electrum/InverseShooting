@@ -10,12 +10,6 @@ namespace Game.Variables
     public interface IGameVariable<T>
     {
         /// <summary>
-        /// ゲーム変数を追加する
-        /// </summary>
-        /// <param name="variable"></param>
-        void Add(T variable);
-
-        /// <summary>
         /// ゲーム変数を取得する
         /// </summary>
         /// <returns>ゲーム変数</returns>

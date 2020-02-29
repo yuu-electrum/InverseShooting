@@ -12,11 +12,22 @@ namespace Game.Variables
         [SerializeField]
         private UserPosition userPosition = null;
 
+        [SerializeField]
+        private StageBoundary stageBoundary = null;
+
         public UserPosition UserPosition
         {
             get
             {
                 return userPosition;
+            }
+        }
+
+        public StageBoundary StageBoundary
+        {
+            get
+            {
+                return stageBoundary;
             }
         }
     }

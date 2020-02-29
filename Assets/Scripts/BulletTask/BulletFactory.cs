@@ -15,6 +15,9 @@ namespace Game.Bullet
         [SerializeField]
         private GameObject inversibleBullet = null;
 
+        [SerializeField]
+        private Game.Variables.Variables variables;
+
         /// <summary>
         /// 弾を生成する
         /// </summary>
@@ -23,21 +26,20 @@ namespace Game.Bullet
         /// <param name="y">Y座標</param>
         /// <param name="degrees">角度</param>
         /// <param name="speed">速度</param>
-        /// <returns></returns>
+        /// <returns>弾</returns>
         public IBullet Generate(bool isInversible, float x, float y, float degrees, float speed)
         {
-            var newObject = Instantiate(isInversible ? inversibleBullet : basicBullet).GetComponent(typeof(IBullet)) as IBullet;
+            var newObject = Instantiate(isInversible ? inversibleBullet : basicBullet);
+            (newObject as GameObject).transform.position = new Vector3(
+                variables.StageBoundary.Get().xMin * -2.0f,
+                variables.StageBoundary.Get().yMin * -2.0f,
+                Configurations.GAMEOBJECT_DEPTH
+            );
 
-            newObject.Position = new Vector3(x, y, -107.0f);
-            newObject.Degrees  = degrees;
-            newObject.Speed    = speed;
+            var bullet = newObject.GetComponent(typeof(IBullet)) as IBullet;
+            bullet.Initialize(x, y, degrees, speed);
 
-            if(isInversible)
-            {
-                (newObject as InversibleBullet).CurrentTimeflow = InversibleBullet.Timeflow.Normal;
-            }
-
-            return newObject;
+            return bullet;
         }
     }
 }

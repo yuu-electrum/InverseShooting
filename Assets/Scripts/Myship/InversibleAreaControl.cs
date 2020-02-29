@@ -29,6 +29,8 @@ namespace Game
                 return;
             }
 
+            Shrink();
+
             // 現在の範囲に合わせてリサイズする
             var scale = inversibleArea.transform.localScale;
             scale.x = currentRange;
@@ -42,6 +44,10 @@ namespace Game
         public void Expand()
         {
             currentRange += Configurations.BULLET_INVERSIBLE_DELTA;
+            if(currentRange > Configurations.MAXIMUM_BULLET_INVERSIBLE_RANGE)
+            {
+                currentRange = Configurations.MAXIMUM_BULLET_INVERSIBLE_RANGE;
+            }
         }
 
         /// <summary>
@@ -52,7 +58,6 @@ namespace Game
             currentRange -= Configurations.BULLET_INVERSIBLE_SUBTRACTION;
             if(Mathf.Abs(currentRange - 0.0f) < float.Epsilon || currentRange < 0.0f)
             {
-                isEnabled = false;
                 currentRange = 0.0f;
             }
         }
@@ -62,9 +67,15 @@ namespace Game
         /// </summary>
         public void EnableArea()
         {
-            // 徐々に範囲を狭めていく
             isEnabled = true;
-            Shrink();
+        }
+
+        /// <summary>
+        /// 範囲をしまう
+        /// </summary>
+        public void DisableArea()
+        {
+            isEnabled = false;
         }
     }
 }

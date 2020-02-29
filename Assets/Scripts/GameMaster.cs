@@ -15,7 +15,7 @@ namespace Game
 
         public void Start()
         {
-            taskManager.AddTask(0, taskManager.gameObject.AddComponent<Circle>() as BasicBulletTask);
+            taskManager.AddTask(0, taskManager.gameObject.AddComponent<Opening>() as BasicBulletTask);
         }
 
         public void Update()

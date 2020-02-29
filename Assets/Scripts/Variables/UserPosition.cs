@@ -12,11 +12,6 @@ namespace Game.Variables
         [SerializeField]
         Transform variable = null;
 
-        public void Add(Transform variable)
-        {
-            this.variable = variable;
-        }
-
         public Transform Get()
         {
             return transform;

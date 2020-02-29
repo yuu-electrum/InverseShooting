@@ -40,7 +40,10 @@ namespace Game.Bullet
             }
             tasks.ForEach(t => t.Continue());
 
-            tasks.Where(t => t.ShouldTerminate).ToList().ForEach(t => Destroy(t));
+            tasks.Where(t => t.ShouldTerminate).ToList().ForEach(t => {
+                t.Terminate();
+                Destroy(t);
+            });
             tasks.RemoveAll(t => t.ShouldTerminate);
 
             currentFrame++;
