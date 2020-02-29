@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +10,7 @@ namespace Game
     /// <summary>
     /// 自機操作
     /// </summary>
+    [RequireComponent(typeof(CameraControl))]
     public class MyshipControl : MonoBehaviour
     {
         [SerializeField]
