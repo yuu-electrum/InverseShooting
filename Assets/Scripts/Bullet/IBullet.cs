@@ -10,6 +10,8 @@ namespace Game.Bullet
         Vector3 Position { get; set; }
         float Degrees { get; set; }
         float Speed { get; set; }
-        bool WillDecayOnOutOfScreen { get; set; }
+
+        void Initialize(float x, float y, float degrees, float speed);
+        void Destroy();
     }
 }

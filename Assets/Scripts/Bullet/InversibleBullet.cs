@@ -16,8 +16,8 @@ namespace Game.Bullet
         /// </summary>
         public enum Timeflow
         {
-            Normal   = 1,
-            Inversed = -1
+            Normal,
+            Inversed
         }
 
         public Timeflow CurrentTimeflow { get; set; }
@@ -25,13 +25,15 @@ namespace Game.Bullet
 
         public override void Update()
         {
-            currentFrame += (int)CurrentTimeflow;
+            currentFrame++;
+
             IsFullInversed = currentFrame < 0;
 
             var currentPosition = Position;
+            var timeflowMultiplier = CurrentTimeflow == Timeflow.Inversed ? -1.0f : 1.0f;
 
-            currentPosition.x += Mathf.Cos(Degrees) * Speed * currentFrame;
-            currentPosition.y += Mathf.Sin(Degrees) * Speed * currentFrame;
+            currentPosition.x += Mathf.Cos(Degrees) * Speed * timeflowMultiplier;
+            currentPosition.y += Mathf.Sin(Degrees) * Speed * timeflowMultiplier;
 
             Position = currentPosition;
             this.gameObject.transform.position = Position;

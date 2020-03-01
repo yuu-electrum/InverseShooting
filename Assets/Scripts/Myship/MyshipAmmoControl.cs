@@ -27,6 +27,10 @@ namespace Game
             {
                 inversibleAreaControl.EnableArea();
             }
+            else
+            {
+                inversibleAreaControl.DisableArea();
+            }
         }
     }
 }

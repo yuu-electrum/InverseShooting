@@ -14,6 +14,14 @@ namespace Game
             cam = this.GetComponent<Camera>();
         }
 
+        public Camera Camera
+        {
+            get
+            {
+                return cam;
+            }
+        }
+
         /// <summary>
         /// その座標がカメラの描写範囲内か
         /// </summary>
@@ -23,8 +31,8 @@ namespace Game
             var viewportPosition = cam.WorldToViewportPoint(target);
             return viewportPosition.x > Configurations.STAGE_BOUNDARY_LEFT
                 && viewportPosition.x < Configurations.STAGE_BOUNDARY_RIGHT
-                && viewportPosition.y > Configurations.STAGE_BOUNDARY_TOP
-                && viewportPosition.y < Configurations.STAGE_BOUNDARY_BOTTOM;
+                && viewportPosition.y < Configurations.STAGE_BOUNDARY_TOP
+                && viewportPosition.y > Configurations.STAGE_BOUNDARY_BOTTOM;
         }
     }
 }

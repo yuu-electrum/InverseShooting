@@ -13,12 +13,7 @@ namespace Game.Bullet
         public Vector3 Position { get; set; }
         public float Degrees { get; set; }
         public float Speed { get; set; }
-        public bool WillDecayOnOutOfScreen { get; set; }
 
-        public void Start()
-        {
-
-        }
 
         public virtual void Update()
         {
@@ -29,7 +24,22 @@ namespace Game.Bullet
             currentPosition.y += Mathf.Sin(Degrees) * Speed;
 
             Position = currentPosition;
-            this.gameObject.transform.position = Position;
+            gameObject.transform.position = Position;
+        }
+
+        public void Initialize(float x, float y, float degrees, float speed)
+        {
+            Position = new Vector3(x, y, Configurations.GAMEOBJECT_DEPTH);
+            Degrees  = degrees;
+            Speed    = speed;
+        }
+
+        public void Destroy()
+        {
+            if(this != null)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
