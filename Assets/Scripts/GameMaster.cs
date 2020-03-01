@@ -13,6 +13,18 @@ namespace Game
         [SerializeField]
         private Bullet.TaskManager taskManager = null;
 
+        /// <summary>
+        /// 残機
+        /// </summary>
+        private int life = 3;
+        public int Life
+        {
+            get
+            {
+                return life;
+            }
+        }
+
         public void Start()
         {
             taskManager.AddTask(0, taskManager.gameObject.AddComponent<Opening>() as BasicBulletTask);
@@ -22,7 +34,19 @@ namespace Game
 
         public void Update()
         {
+            if(Life <= 0)
+            {
+                // ゲームオーバーの処理
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+            }
+        }
 
+        /// <summary>
+        /// 残機を減らす
+        /// </summary>
+        public void Kill()
+        {
+            life--;
         }
     }
 }

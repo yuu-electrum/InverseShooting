@@ -25,6 +25,8 @@ namespace Game.Bullet
 
         public override void Continue()
         {
+            base.Continue();
+
             for(var i = bullets.Count - 1; i >= 0; i--)
             {
                 if(!Variables.StageBoundary.IsInBoundary(bullets[i].Position))
@@ -91,8 +93,6 @@ namespace Game.Bullet
                 ).Radius;
                 bullets.Add(Factory.Generate(true, centerx, boundary.yMax, radius, 1.0f));
             }
-
-            base.Continue();
         }
 
         public override void Terminate()
