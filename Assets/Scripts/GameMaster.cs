@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Bullet;
 
 namespace Game
 {
@@ -9,24 +10,17 @@ namespace Game
     /// </summary>
     public class GameMaster : MonoBehaviour
     {
-        public int Life { get; set; }
+        [SerializeField]
+        private Bullet.TaskManager taskManager = null;
 
         public void Start()
         {
-            Life = 3;
+            taskManager.AddTask(0, taskManager.gameObject.AddComponent<Opening>() as BasicBulletTask);
         }
 
         public void Update()
         {
-        
-        }
 
-        /// <summary>
-        /// 残機を減らす
-        /// </summary>
-        public void Kill()
-        {
-            Life--;
         }
     }
 }
