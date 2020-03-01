@@ -52,7 +52,7 @@ namespace Game.Bullet
                     player.transform.position.y,
                     boundary.xMax,
                     boundary.yMax
-                ).Radius + new Math.DegreesToRadius(3).Radius;
+                ).Radius + new Math.DegreesToRadius(2).Radius;
 
                 bullets.Add(Factory.Generate(false, boundary.xMax, boundary.yMax, baseRadius, 1.0f));
                 bullets.Add(Factory.Generate(false, boundary.xMax, boundary.yMax, baseRadius + new Math.DegreesToRadius(10).Radius, 1.0f));
@@ -69,7 +69,7 @@ namespace Game.Bullet
                     player.transform.position.y,
                     boundary.xMin,
                     Variables.StageBoundary.Get().yMax
-                ).Radius + new Math.DegreesToRadius(3).Radius;
+                ).Radius + new Math.DegreesToRadius(-2).Radius;
 
                 bullets.Add(Factory.Generate(false, boundary.xMin, boundary.yMax, baseRadius, 1.0f));
                 bullets.Add(Factory.Generate(false, boundary.xMin, boundary.yMax, baseRadius + new Math.DegreesToRadius(10).Radius, 1.0f));

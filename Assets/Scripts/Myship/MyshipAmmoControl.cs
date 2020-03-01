@@ -22,12 +22,10 @@ namespace Game
         void Update()
         {
             var keyboard = Keyboard.current;
-
             if(keyboard.zKey.isPressed)
             {
                 inversibleAreaControl.EnableArea();
-            }
-            else
+            } else
             {
                 inversibleAreaControl.DisableArea();
             }
