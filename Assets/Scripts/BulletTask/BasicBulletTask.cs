@@ -36,7 +36,7 @@ namespace Game.Bullet
         {
             get
             {
-                return CurrentFrame > Duration;
+                return CurrentFrame >= Duration;
             }
         }
 

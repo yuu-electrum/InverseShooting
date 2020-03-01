@@ -46,5 +46,10 @@ namespace Game
         /// ゲームオブジェクトのZ軸
         /// </summary>
         public const float GAMEOBJECT_DEPTH = -107.0f;
+
+        /// <summary>
+        /// 被弾後の無敵時間
+        /// </summary>
+        public const int INVINCIBLE_FRAME_EACH_DEATH = 240;
     }
 }

@@ -29,6 +29,7 @@ namespace Game.Bullet
 
         public override void Continue()
         {
+            base.Continue();
             for(var i = bullets.Count - 1; i >= 0; i--)
             {
                 if(!Variables.StageBoundary.IsInBoundary(bullets[i].Position))
@@ -80,13 +81,12 @@ namespace Game.Bullet
                     bullets.Add(Factory.Generate(true, offsetPositionA.Position.x, offsetPositionA.Position.y, degreeToPlayer.Radius, 0.1f));
                 }
             }
-
-            base.Continue();
         }
 
         public override void Terminate()
         {
             bullets.ForEach(b => b.Destroy());
+            acceralatingBullets.ForEach(ab => ab.Destroy());
             base.Terminate();
         }
 
