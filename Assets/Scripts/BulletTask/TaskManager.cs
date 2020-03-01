@@ -22,6 +22,7 @@ namespace Game.Bullet
         private List<BasicBulletTask> tasks;
 
         private int currentFrame = 0;
+        private int terminatedScene = 0;
 
         public void Start()
         {
@@ -32,6 +33,11 @@ namespace Game.Bullet
 
         public void Update()
         {
+            if(allTasks.Count == terminatedScene)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Clear");
+            }
+
             var activatedTaskIndexes = taskIndexes.Where(i => i.Value == currentFrame);
             foreach(var taskIndex in activatedTaskIndexes)
             {
@@ -40,11 +46,16 @@ namespace Game.Bullet
             }
             tasks.ForEach(t => t.Continue());
 
-            tasks.Where(t => t.ShouldTerminate).ToList().ForEach(t => {
-                t.Terminate();
-                Destroy(t);
-            });
-            tasks.RemoveAll(t => t.ShouldTerminate);
+            for(var i = tasks.Count - 1; i >= 0; i--)
+            {
+                if(tasks[i].ShouldTerminate)
+                {
+                    tasks[i].Terminate();
+                    Destroy(tasks[i]);
+                    tasks.RemoveAt(i);
+                    terminatedScene++;
+                }
+            }
 
             currentFrame++;
         }
