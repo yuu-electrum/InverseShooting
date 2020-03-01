@@ -32,8 +32,8 @@ namespace Game.Bullet
             var currentPosition = Position;
             var timeflowMultiplier = CurrentTimeflow == Timeflow.Inversed ? -1.0f : 1.0f;
 
-            currentPosition.x += Mathf.Cos(Degrees) * Speed * timeflowMultiplier;
-            currentPosition.y += Mathf.Sin(Degrees) * Speed * timeflowMultiplier;
+            currentPosition.x += Mathf.Cos(Radius) * Speed * timeflowMultiplier;
+            currentPosition.y += Mathf.Sin(Radius) * Speed * timeflowMultiplier;
 
             Position = currentPosition;
             this.gameObject.transform.position = Position;

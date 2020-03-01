@@ -24,10 +24,10 @@ namespace Game.Bullet
         /// <param name="isInversible">範囲で跳ね返せるかどうか</param>
         /// <param name="x">X座標</param>
         /// <param name="y">Y座標</param>
-        /// <param name="degrees">角度</param>
+        /// <param name="radius">ラジアン角</param>
         /// <param name="speed">速度</param>
         /// <returns>弾</returns>
-        public IBullet Generate(bool isInversible, float x, float y, float degrees, float speed)
+        public IBullet Generate(bool isInversible, float x, float y, float radius, float speed)
         {
             var newObject = Instantiate(isInversible ? inversibleBullet : basicBullet);
             (newObject as GameObject).transform.position = new Vector3(
@@ -37,7 +37,7 @@ namespace Game.Bullet
             );
 
             var bullet = newObject.GetComponent(typeof(IBullet)) as IBullet;
-            bullet.Initialize(x, y, degrees, speed);
+            bullet.Initialize(x, y, radius, speed);
 
             return bullet;
         }

@@ -22,8 +22,6 @@ namespace Game
 
         public void Update()
         {
-            // 範囲を展開できない時は非表示にする
-            inversibleArea.SetActive(isEnabled);
             if(!isEnabled)
             {
                 return;
@@ -68,6 +66,7 @@ namespace Game
         public void EnableArea()
         {
             isEnabled = true;
+            gameObject.SetActive(isEnabled);
         }
 
         /// <summary>
@@ -76,6 +75,19 @@ namespace Game
         public void DisableArea()
         {
             isEnabled = false;
+            gameObject.SetActive(isEnabled);
+        }
+
+        public void OnCollisionEnter(Collision collision)
+        {
+            var obj = collision.collider.gameObject.GetComponent(typeof(Bullet.InversibleBullet)) as Bullet.InversibleBullet;
+            if(obj == null)
+            {
+                return;
+            }
+
+            // 反転可能な弾を反転させる
+            obj.CurrentTimeflow = Bullet.InversibleBullet.Timeflow.Inversed;
         }
     }
 }
